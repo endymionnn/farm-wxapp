@@ -1,0 +1,28 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/user/login",
+        "pages/user/mobile",
+        "pages/farm/index",
+        "pages/farm/show",
+        "pages/pay/index",
+        "pages/member/index",
+        "pages/space/index",
+        "pages/space/view",
+        "pages/space/my",
+        "pages/space/myshow",
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "农场云",
+        "navigationBarTextStyle": "black",
+        "navigationStyle": "custom"
+    },
+    "permission": {
+        "scope.userLocation": {
+            "desc": "您的位置信息仅用于计算和农场之间的距离"
+        }
+    },
+    "sitemapLocation": "sitemap.json"
+}
