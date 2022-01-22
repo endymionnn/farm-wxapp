@@ -14,7 +14,7 @@ Page({
         var that = this;
 
         that.setData({
-            url: app.globalData.domain + '/shop/show/app_id/'+ app.globalData.app_id +'/id/' + options.id,
+            url: app.globalData.domain + '/farm/show/app_id/'+ app.globalData.app_id +'/id/' + options.id,
         });
     },
 

@@ -6,7 +6,7 @@
     <view class="li cl">
         <view class="minute">{{item.minute}}分钟</view>
         <view class="info cl">
-            <navigator url="/pages/shop/index?id={{item.shop_id}}" class="a" open-type="{{opentype}}" hover-class="none">
+            <navigator url="/pages/farm/index?id={{item.farm_id}}" class="a" open-type="{{opentype}}" hover-class="none">
                 <image src="{{item.logo}}" class="img z"></image>
                 <view class="p">{{item.name}}</view>
             </navigator>

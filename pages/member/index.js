@@ -30,7 +30,7 @@ Page({
             show_faxian: wx.getStorageSync('footerFaxian'),
             lesson_coach: wx.getStorageSync('footerCoach'),
             lesson_group: wx.getStorageSync('footerGroup'),
-            shop_id: wx.getStorageSync('shopId'),
+            farm_id: wx.getStorageSync('farmId'),
         });
 
         wx.showLoading({

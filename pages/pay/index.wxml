@@ -16,10 +16,10 @@
                 </text>
             </view>
             </block>
-            <block wx:if="{{shop}}">
+            <block wx:if="{{farm}}">
             <view class="li">
                 门店
-                <text class="em">{{shop.name}}</text>
+                <text class="em">{{farm.name}}</text>
             </view>
             </block>
             <view class="li">

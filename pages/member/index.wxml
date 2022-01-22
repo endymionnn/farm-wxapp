@@ -189,14 +189,14 @@
     </view>
     </block>
     <view class="li">
-        <navigator url="/pages/shop/index?id={{shop_id}}" class="navigator" open-type="{{opentype}}" hover-class="none">
+        <navigator url="/pages/farm/index?id={{farm_id}}" class="navigator" open-type="{{opentype}}" hover-class="none">
             <view class="iconfont iconhotel"></view>
             <text>门店</text>
         </navigator>
     </view>
     <block wx:if="{{lesson_coach}}">
     <view class="li">
-        <navigator url="/pages/coach/index?id={{shop_id}}" class="navigator" open-type="{{opentype}}" hover-class="none">
+        <navigator url="/pages/coach/index?id={{farm_id}}" class="navigator" open-type="{{opentype}}" hover-class="none">
             <view class="iconfont iconjianshenjiaolian"></view>
             <text>私教</text>
         </navigator>
@@ -204,7 +204,7 @@
     </block>
     <block wx:if="{{lesson_group}}">
     <view class="li">
-        <navigator url="/pages/group/index?id={{shop_id}}" class="navigator" open-type="{{opentype}}" hover-class="none">
+        <navigator url="/pages/group/index?id={{farm_id}}" class="navigator" open-type="{{opentype}}" hover-class="none">
             <view class="iconfont icontuandui"></view>
             <text>团课</text>
         </navigator>

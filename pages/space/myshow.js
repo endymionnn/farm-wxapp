@@ -46,7 +46,7 @@ Page({
                         order: res.data.data.order,
                         list: res.data.data.list,
                         space: res.data.data.space,
-                        shop: res.data.data.shop,
+                        farm: res.data.data.farm,
                         qrcode: res.data.data.qrcode,
                         join: res.data.data.join,
                         cancel: res.data.data.cancel,

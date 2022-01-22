@@ -28,7 +28,7 @@ Page({
             method: 'POST',
             data: {
                 app_id: app.globalData.app_id,
-                shop_id: options.shop_id,
+                farm_id: options.farm_id,
             },
             success: function (res) {
                 wx.hideLoading();

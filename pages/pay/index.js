@@ -46,7 +46,7 @@ Page({
                         copyright: res.data.data.copyright,
                         pay: res.data.data.pay,
                         user: res.data.data.user,
-                        shop: res.data.data.shop,
+                        farm: res.data.data.farm,
                     });
 
                     if (res.data.data.pay.total == 0) {

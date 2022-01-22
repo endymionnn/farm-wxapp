@@ -10,7 +10,7 @@
         "pages/space/index",
         "pages/space/view",
         "pages/space/my",
-        "pages/space/myshow",
+        "pages/space/myshow"
     ],
     "window": {
         "backgroundTextStyle": "light",

@@ -11,7 +11,7 @@ swiper {
     height: 200px;
 }
 
-.shop-banner {
+.farm-banner {
     width: 100%;
     height: 200px;
     position: relative;
@@ -23,7 +23,7 @@ swiper {
     background-size: cover;
 }
 
-.shop-info {
+.farm-info {
     padding: 15px;
     background: #FFF;
     border-radius: 15px 15px 0 0;
@@ -31,7 +31,7 @@ swiper {
     position: relative;
     z-index: 2;
 }
-.shop-pic {
+.farm-pic {
     width: 36px;
     height: 36px;
     float: left;
@@ -39,15 +39,15 @@ swiper {
     box-shadow: 0 0 2px 1px rgba(0,0,0,0.05);
     overflow: hidden;
 }
-.shop-pic image {
+.farm-pic image {
     width: 100%;
     height: 100%;
 }
-.shop-name {
+.farm-name {
     float: left;
 }
 
-.shop-name .name{
+.farm-name .name{
     margin-left: 15px;
     color: #333;
     font-size: 36rpx;
@@ -57,11 +57,11 @@ swiper {
     float: left;
 }
 
-.shop-name .navigator{
+.farm-name .navigator{
     float: left;
 }
 
-.shop-name .p {
+.farm-name .p {
     color: #fff;
     border-radius: 12px;
     height: 24px;
@@ -73,7 +73,7 @@ swiper {
     padding: 0 10px;
     margin-top: 6px;
 }
-.shop-info .address{
+.farm-info .address{
     font-size: 24rpx;
     color: #888;
     margin-top: 10px;
@@ -81,10 +81,10 @@ swiper {
     white-space: nowrap;
     text-overflow: ellipsis;
 }
-.shop-info .address .iconfont{
+.farm-info .address .iconfont{
     margin-right: 15rpx;
 }
-.shop-info .shop_status{
+.farm-info .farm_status{
     float: right;
     padding: 5px 20px;
     border-radius: 5px;
@@ -92,7 +92,7 @@ swiper {
     font-size: 24rpx;
     background: #f9f9f9;
 }
-.shop-info .other_data{
+.farm-info .other_data{
     margin: 20px 0 10px;
     text-align: center;
     color: #999;
@@ -360,22 +360,22 @@ swiper {
     overflow: hidden;
 }
 
-.shop-member .top {
+.farm-member .top {
     margin: 15px 15px 0;
     color: #333;
     font-size: 28rpx;
 }
-.shop-member .top text {
+.farm-member .top text {
     margin-left: 15px;
     padding-right: 2px;
 }
 
-.shop-member .woman {
+.farm-member .woman {
     color: #ff4cb1;
     font-size: 48rpx;
 }
 
-.shop-member .man {
+.farm-member .man {
     color: #467fff;
     font-size: 48rpx;
 }
