@@ -1,33 +1,35 @@
-<view>
-    <view class="public-nav" style="height:{{titleBarHeight}}px;padding-top:{{statusBarHeight}}px">
-        <view class="title" style="height:{{titleBarHeight}}px;">{{title}}</view>
+<view wx:if="{{load}}">
+    <view>
+        <view class="public-nav" style="height:{{titleBarHeight}}px;padding-top:{{statusBarHeight}}px">
+            <view class="title" style="height:{{titleBarHeight}}px;">{{title}}</view>
+        </view>
+        <view style="height:{{titleBarHeight + statusBarHeight}}px;"></view>
     </view>
-    <view style="height:{{titleBarHeight + statusBarHeight}}px;"></view>
-</view>
-<block wx:if="{{list}}">
-<view class="index-main">
-    <block wx:for="{{list}}" wx:key="index" wx:item="item">
-    <view class="found-list" style="background-image: url({{item.banner}});">
-        <navigator url="/pages/farm/index?id={{item.id}}" class="navigator" open-type="{{opentype}}" hover-class="none">
-            <view class="title cl">{{item.name}}</view>
-            <view class="address cl">{{item.address}}</view>
-            <view class="info">
-                <text class="em" wx:if="{{item.distance}}">{{item.distance}}</text>
-            </view>
-        </navigator>
+    <block wx:if="{{list}}">
+    <view class="index-main">
+        <block wx:for="{{list}}" wx:key="index" wx:item="item">
+        <view class="found-list" style="background-image: url({{item.banner}});">
+            <navigator url="/pages/farm/index?id={{item.id}}" class="navigator" open-type="{{opentype}}" hover-class="none">
+                <view class="title cl">{{item.name}}</view>
+                <view class="address cl">{{item.address}}</view>
+                <view class="info">
+                    <text class="em" wx:if="{{item.distance}}">{{item.distance}}</text>
+                </view>
+            </navigator>
+        </view>
+        </block>
+    </view>
+    </block>
+    <block wx:else>
+    <view class="no-data">
+        <view class="iconfont iconNo-data"></view>
+        <text>暂无可用农场</text>
+    </view>
+    </block>
+
+    <block wx:if="{{copyright}}">
+    <view class="weui-footer">
+        <view class="weui-footer__text">{{copyright}}</view>
     </view>
     </block>
 </view>
-</block>
-<block wx:else>
-<view class="no-data">
-    <view class="iconfont iconNo-data"></view>
-    <text>{{msg}}</text>
-</view>
-</block>
-
-<block wx:if="{{copyright}}">
-<view class="weui-footer">
-    <view class="weui-footer__text">{{copyright}}</view>
-</view>
-</block>

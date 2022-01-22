@@ -6,10 +6,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        day: 0,
-        time: [],
-        position_check_key: 10000,
-        position_check: [],
+
     },
 
     /**
@@ -40,7 +37,6 @@ Page({
             data: {
                 app_id: app.globalData.app_id,
                 id: options.id,
-                day: that.data.day,
                 uid: wx.getStorageSync('userId'),
             },
             success: function (res) {
@@ -102,128 +98,8 @@ Page({
     onReachBottom: function () {
 
     },
-    bindDay: function (e) {
+    order: function () {
         var that = this;
-
-        that.setData({
-            day: e.detail.value,
-            time: [],
-            position_check_key: 10000,
-            position_check: [],
-        });
-
-        wx.request({
-            url: app.globalData.domain + '/space/view.html',
-            method: 'POST',
-            data: {
-                app_id: app.globalData.app_id,
-                id: that.data.id,
-                day: e.detail.value,
-                uid: wx.getStorageSync('userId'),
-            },
-            success: function (res) {
-                if (res.data.state) {
-                    that.setData({
-                        title: res.data.data.title,
-                        copyright: res.data.data.copyright,
-                        data: res.data.data.data,
-                        order_day: res.data.data.order_day,
-                        order_time: res.data.data.order_time,
-                        day_str: res.data.data.day_str,
-                        position_list: res.data.data.position_list,
-                        space_free_num: res.data.data.space_free_num,
-                    });
-                }
-            },
-        });
-    },
-    bindTime: function (e) {
-        var that = this;
-
-        var index = e.currentTarget.dataset.index;
-        var item = that.data.order_time[index];
-        item.selected = !item.selected;
-
-        that.setData({
-            order_time: this.data.order_time,
-            position_check_key: 10000,
-            position_check: [],
-        });
-
-        var time = that.data.order_time.filter(it => it.selected).map(it => it.key);
-
-        that.setData({
-            time: time,
-        });
-
-        if (that.data.data.position) {
-            wx.request({
-                url: app.globalData.domain + '/space/view.html',
-                method: 'POST',
-                data: {
-                    app_id: app.globalData.app_id,
-                    id: that.data.id,
-                    day: that.data.day,
-                    time: time,
-                    uid: wx.getStorageSync('userId'),
-                },
-                success: function (res) {
-                    if (res.data.state) {
-                        that.setData({
-                            title: res.data.data.title,
-                            copyright: res.data.data.copyright,
-                            data: res.data.data.data,
-                            order_day: res.data.data.order_day,
-                            order_time: res.data.data.order_time,
-                            day_str: res.data.data.day_str,
-                            position_list: res.data.data.position_list,
-                            space_free_num: res.data.data.space_free_num,
-                        });
-                    }
-                },
-            });
-        }
-    },
-    bindPosition: function (e) {
-        var that = this;
-        if (!that.data.time.length) {
-            wx.showToast({
-                title: '请选择预约时间',
-                icon: 'none',
-                duration: 3000
-            });
-            return false;
-        }
-
-        var c_key = e.currentTarget.dataset.index;
-
-        that.setData({
-            position_check_key: c_key,
-            position_check: that.data.position_list[c_key],
-        });
-
-        return false;
-    },
-    buy: function () {
-        var that = this;
-
-        if (!that.data.time.length) {
-            wx.showToast({
-                title: '请选择预约时间',
-                icon: 'none',
-                duration: 3000
-            });
-            return false;
-        }
-
-        if (that.data.position_list.length && !that.data.position_check.id) {
-            wx.showToast({
-                title: '请选择位置',
-                icon: 'none',
-                duration: 3000
-            });
-            return false;
-        }
 
         if (!wx.getStorageSync('userId')) {
             wx.navigateTo({

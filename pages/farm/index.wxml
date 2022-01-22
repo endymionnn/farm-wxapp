@@ -45,7 +45,7 @@
 <view style="height: 10px; background: #fafafa;"></view>
 <view class="card">
     <view class="header">
-        <navigator class="item-title" url="/pages/space/index?farm_id={{farm.id}}" open-type="{{opentype}}" hover-class="none">租地</navigator>
+        <navigator class="item-title" url="/pages/space/index?farm_id={{farm.id}}" open-type="{{opentype}}" hover-class="none">推荐租地</navigator>
         <navigator class="item-more link-show-jump" url="/pages/space/index?farm_id={{farm.id}}" open-type="{{opentype}}" hover-class="none">更多</navigator>
     </view>
     <view class="space-item">
@@ -54,22 +54,7 @@
             <view class="item-bg-rgba">
                 <view class="item-card-status" style="background: {{item.status.color}}">{{item.status.msg}}</view>
                 <view class="item-card-name">{{item.title}}</view>
-                <view class="item-card-price">￥{{item.price}} / 小时</view>
-                <view class="item-card-remark">
-                    <block wx:if="{{item.type == 1}}">
-                    <text>室内</text>
-                    </block>
-                    <block wx:else>
-                    <text>室外</text>
-                    </block>
-
-                    <block wx:if="{{item.num}}">
-                    <text>适用人数：{{item.num}}人</text>
-                    </block>
-                    <block wx:else>
-                    <text>适用人数：无限制</text>
-                    </block>
-                </view>
+                <view class="item-card-price">￥{{item.zu_price}} / 年</view>
             </view>
         </navigator>
     </block>

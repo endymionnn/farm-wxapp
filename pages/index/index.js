@@ -2,7 +2,7 @@ var app = getApp();
 
 Page({
     data: {
-        msg: '歇业中，过会儿再来吧！',
+        load: 0,
         statusBarHeight: app.globalData.statusBarHeight,
         titleBarHeight: app.globalData.titleBarHeight,
     },
@@ -16,18 +16,7 @@ Page({
         that.setData({
             opentype: app.getOpentype(),
         });
-
-        if (wx.getStorageSync('page_index_index')) {
-            var data = wx.getStorageSync('page_index_index');
-
-            that.setData({
-                title: data.title,
-                copyright: data.copyright,
-                list: data.list,
-            });
-        } else {
-            this.pageLoad();
-        }
+        this.pageLoad();
     },
 
     /**
@@ -41,7 +30,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        this.pageLoad();
+        
     },
 
     /**
@@ -108,10 +97,8 @@ Page({
             },
             success: function (res) {
                 wx.hideLoading();
-
-                wx.setStorageSync('page_index_index', res.data.data);
-   
                 that.setData({
+                    load: 1,
                     title: res.data.data.title,
                     copyright: res.data.data.copyright,
                     list: res.data.data.list,

@@ -20,23 +20,7 @@ Page({
             });
             return false;
         }
-
-        wx.setStorageSync('FarmId', options.id);
-
-        if (wx.getStorageSync('page_farm_index')) {
-            var data = wx.getStorageSync('page_farm_index');
-
-            that.setData({
-                title: data.title,
-                copyright: data.copyright,
-                farm: data.farm,
-                space: data.space,
-                farm_id: data.farm.id,
-            });
-
-        } else {
-            that.pageLoad(options.id);
-        }
+        that.pageLoad(options.id);
     },
 
     /**
@@ -109,24 +93,18 @@ Page({
             success: function (res) {
                 wx.hideLoading();
                 if (res.data.state) {
-
                     if (!res.data.data.farm) {
                         wx.navigateTo({
                             url: '/pages/index/index',
                         });
                         return false;
                     }
-
-                    wx.setStorageSync('page_farm_index', res.data.data);
-
                     that.setData({
                         title: res.data.data.title,
                         copyright: res.data.data.copyright,
                         farm: res.data.data.farm,
-                        member: res.data.data.member,
                         space: res.data.data.space
                     });
-
                     wx.setStorageSync('FarmId', res.data.data.farm.id);
                 }
             },
