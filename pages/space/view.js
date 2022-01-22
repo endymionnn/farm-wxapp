@@ -6,16 +6,20 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        isAgree: false,
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function (options) {
+    onLoad: function(options) {
         var that = this;
 
-        if (!options.id) {
+        that.setData({
+            opentype: app.getOpentype(),
+        });
+
+        if (!options.id || !options.farm_id) {
             wx.navigateTo({
                 url: '/pages/index/index',
             });
@@ -23,8 +27,7 @@ Page({
         }
 
         that.setData({
-            opentype: app.getOpentype(),
-            id: options.id,
+            farm_id: options.farm_id,
         });
 
         wx.showLoading({
@@ -34,23 +37,20 @@ Page({
         wx.request({
             url: app.globalData.domain + '/space/view.html',
             method: 'POST',
+
             data: {
                 app_id: app.globalData.app_id,
                 id: options.id,
+                farm_id: options.farm_id,
                 uid: wx.getStorageSync('userId'),
             },
-            success: function (res) {
+            success: function(res) {
                 wx.hideLoading();
                 if (res.data.state) {
                     that.setData({
                         title: res.data.data.title,
                         copyright: res.data.data.copyright,
                         data: res.data.data.data,
-                        order_day: res.data.data.order_day,
-                        order_time: res.data.data.order_time,
-                        day_str: res.data.data.day_str,
-                        position_list: res.data.data.position_list,
-                        space_free_num: res.data.data.space_free_num,
                     });
                 }
             },
@@ -60,45 +60,57 @@ Page({
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
-    onReady: function () {
+    onReady: function() {
 
     },
 
     /**
      * 生命周期函数--监听页面显示
      */
-    onShow: function () {
+    onShow: function() {
 
     },
 
     /**
      * 生命周期函数--监听页面隐藏
      */
-    onHide: function () {
+    onHide: function() {
 
     },
 
     /**
      * 生命周期函数--监听页面卸载
      */
-    onUnload: function () {
+    onUnload: function() {
 
     },
 
     /**
      * 页面相关事件处理函数--监听用户下拉动作
      */
-    onPullDownRefresh: function () {
+    onPullDownRefresh: function() {
 
     },
 
     /**
      * 页面上拉触底事件的处理函数
      */
-    onReachBottom: function () {
+    onReachBottom: function() {
 
     },
-    order: function () {
+
+    /**
+     * 用户点击右上角分享
+     */
+    onShareAppMessage: function() {
+
+    },
+    bindAgreeChange: function(e) {
+        this.setData({
+            isAgree: !!e.detail.value.length
+        });
+    },
+    order: function() {
         var that = this;
 
         if (!wx.getStorageSync('userId')) {
@@ -108,22 +120,25 @@ Page({
             return false;
         }
 
-        wx.showLoading({
-            title: '加载中...',
-        });
+        if (!that.data.isAgree) {
+            wx.showToast({
+                title: '您还未同意协议',
+                icon: 'none',
+                duration: 3000
+            });
+            return false;
+        }
 
         wx.request({
-            url: app.globalData.domain + '/space/order.html',
+            url: app.globalData.domain + '/card/buy.html',
             method: 'POST',
             data: {
                 app_id: app.globalData.app_id,
                 uid: wx.getStorageSync('userId'),
                 id: that.data.data.id,
-                day: that.data.day,
-                time: that.data.time,
-                position_id: that.data.position_check.id,
+                farm_id: that.data.farm_id,
             },
-            success: function (res) {
+            success: function(res) {
                 wx.hideLoading();
                 if (res.data.state == 100) {
                     wx.navigateTo({
@@ -131,7 +146,6 @@ Page({
                     });
                     return false;
                 }
-
                 if (res.data.state == 1) {
                     if (res.data.data.id) {
                         wx.navigateTo({
