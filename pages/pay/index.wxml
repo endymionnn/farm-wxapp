@@ -7,18 +7,9 @@
             <text class="cite">￥</text>{{pay.total}}
         </view>
         <view class="pay-list">
-            <block wx:if="{{user.money > 0}}">
-            <view class="li">
-                账户余额
-                <text class="span">
-                    <text class="cite">￥</text>
-                    <text class="em">{{user.money}}</text>
-                </text>
-            </view>
-            </block>
             <block wx:if="{{farm}}">
             <view class="li">
-                门店
+                农场
                 <text class="em">{{farm.name}}</text>
             </view>
             </block>

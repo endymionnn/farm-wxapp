@@ -6,7 +6,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        load: 0,
     },
 
     /**
@@ -32,12 +32,14 @@ Page({
             },
             success: function (res) {
                 wx.hideLoading();
+                that.setData({
+                    load: 1,
+                });
                 if (res.data.state) {
                     that.setData({
                         title: res.data.data.title,
                         copyright: res.data.data.copyright,
                         list: res.data.data.list,
-                        is_list: res.data.data.is_list,
                     });
                 }
             },

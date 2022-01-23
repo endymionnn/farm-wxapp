@@ -45,7 +45,6 @@ Page({
                         title: res.data.data.title,
                         copyright: res.data.data.copyright,
                         pay: res.data.data.pay,
-                        user: res.data.data.user,
                         farm: res.data.data.farm,
                     });
 
@@ -145,35 +144,8 @@ Page({
 
                     var jump_url = '';
 
-                    if (that.data.pay.type == 'vip') {
-                        jump_url = '/pages/card/my';
-                    }
-                    if (that.data.pay.type == 'groupcard') {
-                        jump_url = '/pages/groupcard/my';
-                    }
-                    if (that.data.pay.type == 'coach') {
-                        jump_url = '/pages/member/pt';
-                    }
-                    if (that.data.pay.type == 'group') {
-                        jump_url = '/pages/member/gt';
-                    }
-                    if (that.data.pay.type == 'money') {
-                        jump_url = '/pages/member/money';
-                    }
-                    if (that.data.pay.type == 'gym') {
-                        jump_url = '/pages/member/gym';
-                    }
-                    if (that.data.pay.type == 'mall_credit') {
-                        jump_url = '/pages/mall/creditorder';
-                    }
                     if (that.data.pay.type == 'space') {
                         jump_url = '/pages/space/my';
-                    }
-                    if (that.data.pay.type == 'deposit_gym') {
-                        jump_url = '/pages/deposit/index';
-                    }
-                    if (that.data.pay.type == 'buffet') {
-                        jump_url = '/pages/buffet/order';
                     }
                 }
 

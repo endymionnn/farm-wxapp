@@ -10,7 +10,7 @@ Page({
      */
     data: {
         is_list: 1,
-        title: '场地预约记录',
+        title: '我的租地记录',
     },
 
     /**
@@ -48,14 +48,6 @@ Page({
             success: function (res) {
                 wx.hideLoading();
                 if (res.data.state) {
-
-                    if (res.data.state == 100) {
-                        wx.navigateTo({
-                            url: '/pages/user/mobile',
-                        });
-                        return false;
-                    }
-
                     that.setData({
                         copyright: res.data.data.copyright,
                         list: res.data.data.list,

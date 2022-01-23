@@ -1,9 +1,10 @@
+let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {}
 
 App({
 
     globalData: {
         domain: 'https://farm.0wpt.com/wxapp',
-        app_id: 1,
+        app_id: extConfig.app_id,
         statusBarHeight: 0,
         titleBarHeight: 0
     },

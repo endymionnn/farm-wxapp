@@ -6,7 +6,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        title: '场地预约详情',
+        title: '租地详情',
     },
 
     /**
@@ -43,13 +43,9 @@ Page({
                 if (res.data.state) {
                     that.setData({
                         copyright: res.data.data.copyright,
-                        order: res.data.data.order,
-                        list: res.data.data.list,
+                        data: res.data.data.data,
                         space: res.data.data.space,
                         farm: res.data.data.farm,
-                        qrcode: res.data.data.qrcode,
-                        join: res.data.data.join,
-                        cancel: res.data.data.cancel,
                     });
                 }
             },
@@ -102,36 +98,28 @@ Page({
      * 用户点击右上角分享
      */
     onShareAppMessage: function () {
-        var that = this;
-        return {
-            title: that.data.space.title,
-            imageUrl: that.data.space.pic,
-            path: '/pages/space/myshow?id='+ that.data.order.id,
-        };
-    },
-    cancel: function (e) {
-        var that = this;
-        var key = e.currentTarget.dataset.key;
-        var id  = e.currentTarget.dataset.id;
 
+    },
+    handle: function (e) {
+        var that = this;
         wx.showActionSheet({
-            itemList: ['踢出队伍'],
+            itemList: ['浇水', '申请代种植', '申请代收割', '申请代配送'],
             success: function (res) {
                 if (!res.cancel) {
                     wx.request({
-                        url: app.globalData.domain + '/space/cancel.html',
+                        url: app.globalData.domain + '/space/handle.html',
                         method: 'POST',
                         data: {
                             app_id: app.globalData.app_id,
                             uid: wx.getStorageSync('userId'),
-                            id: id,
+                            id: that.data.data.id,
+                            handle: res.tapIndex,
                         },
                         success: function (res) {
                             wx.hideLoading();
                             if (res.data.state) {
-                                that.data.list.splice(key, 1);
                                 that.setData({
-                                    list: that.data.list,
+                                    space: res.data.data.space,
                                 });
                             } else {
                                 wx.showToast({
@@ -146,68 +134,4 @@ Page({
             }
         });
     },
-    join: function () {
-        var that = this;
-        wx.request({
-            url: app.globalData.domain + '/space/myshow.html',
-            method: 'POST',
-            data: {
-                app_id: app.globalData.app_id,
-                uid: wx.getStorageSync('userId'),
-                id: that.data.order.id,
-                join: 1,
-            },
-            success: function (res) {
-                wx.hideLoading();
-                if (res.data.state) {
-                    that.setData({
-                        list: res.data.data.list,
-                        qrcode: res.data.data.qrcode,
-                        join: res.data.data.join,
-                        cancel: res.data.data.cancel,
-                    });
-                } else {
-                    wx.showToast({
-                        title: res.data.msg,
-                        icon: 'none',
-                        duration: 3000
-                    });
-                }
-            },
-        });
-    },
-    renew: function () {
-        var that = this;
-        wx.request({
-            url: app.globalData.domain + '/space/renew.html',
-            method: 'POST',
-            data: {
-                app_id: app.globalData.app_id,
-                uid: wx.getStorageSync('userId'),
-                id: that.data.order.id,
-            },
-            success: function (res) {
-                wx.hideLoading();
-                if (res.data.state) {
-                    if (res.data.data.id) {
-                        wx.navigateTo({
-                            url: '/pages/pay/index?id=' + res.data.data.id,
-                        });
-                    } else {
-                        wx.showToast({
-                            title: res.data.msg,
-                            icon: 'none',
-                            duration: 3000
-                        });
-                    }
-                } else {
-                    wx.showToast({
-                        title: res.data.msg,
-                        icon: 'none',
-                        duration: 3000
-                    });
-                }
-            },
-        });
-    }
 })

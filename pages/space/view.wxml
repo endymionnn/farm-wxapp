@@ -1,80 +1,55 @@
 <header navigationBarTitle="{{title}}"></header>
-
+<view wx:if="{{load}}">
 <view class="coach-view">
-    <view class="view-top" style="background-image: url({{data.bgimg}})"></view>
+    <view class="view-top" style="background-image: url({{data.pic}})"></view>
     <view class="view-box">
         <view class="weui-form-preview">
             <view class="weui-form-preview__hd">
                 <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">卡名称</view>
-                    <view class="weui-form-preview__value">{{data.name}}</view>
+                    <view class="weui-form-preview__label">地名称/编号</view>
+                    <view class="weui-form-preview__value">{{data.title}}</view>
                 </view>
                 <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">价格</view>
+                    <view class="weui-form-preview__label">年租价</view>
                     <view class="weui-form-preview__value">
-                        <text class="c_price"><text class="f_14">￥</text>{{data.price}}</text>
-                        <block wx:if="{{data.orig > 0}}">
-                        <text class="orig">￥{{data.orig}}</text>
-                        </block>
+                        <text class="c_price"><text class="f_14">￥</text>{{data.zu_price}}</text>
                     </view>
                 </view>
             </view>
             <view class="weui-form-preview__bd">
                 <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">可用门店</view>
-                    <view class="weui-form-preview__value">
-                        <block wx:for="{{data.shop}}" wx:key="index" wx:item="item">
-                        <navigator url="/pages/shop/index?id={{item.id}}" class="a link-show-jump" open-type="{{opentype}}" hover-class="none">{{item.name}}</navigator>
-                        </block>
-                    </view>
+                    <view class="weui-form-preview__label">长</view>
+                    <view class="weui-form-preview__value">{{data.height}}米</view>
                 </view>
             </view>
             <view class="weui-form-preview__bd">
                 <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">可入场时间段</view>
-                    <view class="weui-form-preview__value">{{data.in_stime}}:00 ~ {{data.in_etime}}:59</view>
-                </view>
-            </view>
-            <view class="weui-form-preview__bd" wx:if="{{data.month > 0}}">
-                <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">过期时间</view>
-                    <view class="weui-form-preview__value">{{data.month}}个月</view>
-                </view>
-            </view>
-            <view class="weui-form-preview__bd" wx:if="{{data.credit > 0}}">
-                <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">购买可获得积分</view>
-                    <view class="weui-form-preview__value">{{data.credit}}</view>
-                </view>
-            </view>
-            <view class="weui-form-preview__bd" wx:if="{{data.tui_money > 0}}">
-                <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">分享有机会获得</view>
-                    <view class="weui-form-preview__value">￥{{data.tui_money}}</view>
-                </view>
-            </view>
-            <view class="weui-form-preview__bd" wx:if="{{data.can_use > 0}}">
-                <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">可用次数</view>
-                    <view class="weui-form-preview__value">{{data.can_use}}次</view>
+                    <view class="weui-form-preview__label">宽</view>
+                    <view class="weui-form-preview__value">{{data.width}}米</view>
                 </view>
             </view>
             <view class="weui-form-preview__bd">
                 <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">场地使用费用</view>
-                    <view class="weui-form-preview__value">{{data.cost}}</view>
+                    <view class="weui-form-preview__label">代种植</view>
+                    <view class="weui-form-preview__value">{{data.dai_zhong}}/次</view>
                 </view>
             </view>
-            <view class="weui-form-preview__bd" wx:if="{{data.free_coach.type > 0}}">
+            <view class="weui-form-preview__bd">
                 <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">赠送私教</view>
-                    <view class="weui-form-preview__value"><block wx:if="{{data.free_coach.type == 2}}">每月</block><block wx:if="{{data.free_coach.type == 3}}">每周</block>{{data.free_coach.num}}课时</view>
+                    <view class="weui-form-preview__label">代收割</view>
+                    <view class="weui-form-preview__value">{{data.dai_shou}}/次</view>
                 </view>
             </view>
-            <view class="weui-form-preview__bd" wx:if="{{data.free_group.type > 0}}">
+            <view class="weui-form-preview__bd">
                 <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">赠送团课</view>
-                    <view class="weui-form-preview__value"><block wx:if="{{data.free_group.type == 2}}">每月</block><block wx:if="{{data.free_group.type == 3}}">每周</block>{{data.free_group.num}}次</view>
+                    <view class="weui-form-preview__label">代配送</view>
+                    <view class="weui-form-preview__value">{{data.dai_song}}/次</view>
+                </view>
+            </view>
+            <view class="weui-form-preview__bd">
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">说明信息</view>
+                    <view class="weui-form-preview__value">{{data.content}}</view>
                 </view>
             </view>
         </view>
@@ -87,7 +62,7 @@
 </view>
 
 <view class="footer-box"></view>
-<view class="weui-btn-area">
+<view class="weui-btn-area" wx:if="{{data.zu}}">
     <view class="weui-flex">
         <view class="weui-flex__item">
             <checkbox-group bindchange="bindAgreeChange" style="float: left;">
@@ -102,11 +77,14 @@
                 </label>
             </checkbox-group>
             <view class="weui-agree__text">
-                <navigator url="/pages/contract/showtpl?id={{data.cid}}" open-type="{{opentype}}" hover-class="none" class="weui-agree__link">《会员协议》</navigator>
+                <navigator url="" open-type="{{opentype}}" hover-class="none" class="weui-agree__link">《协议》</navigator>
             </view>
         </view>
-        <button class="btn-info" type="info" open-type="contact"><view class="i iconfont icontubiao-"></view></button>
-        <button class="btn-primary" bindtap="buy"><block wx:if="{{data.price > 0}}">购买</block>
+        <button class="btn-info" type="info" open-type="contact">
+            <view class="i iconfont icontubiao-"></view>
+        </button>
+        <button class="btn-primary" bindtap="order"><block wx:if="{{data.zu_price > 0}}">租地</block>
         <block wx:else>领取</block></button>
     </view>
+</view>
 </view>

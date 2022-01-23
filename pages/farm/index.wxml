@@ -50,7 +50,7 @@
     </view>
     <view class="space-item">
     <block wx:for="{{space}}" wx:key="index" wx:item="item">
-        <navigator class="item" url="/pages/space/view?id={{item.id}}&farm_id={{farm.id}}" open-type="{{opentype}}" hover-class="none" style="background-image: url({{item.pic}})">
+        <navigator class="item" url="/pages/space/view?id={{item.id}}" open-type="{{opentype}}" hover-class="none" style="background-image: url({{item.pic}})">
             <view class="item-bg-rgba">
                 <view class="item-card-status" style="background: {{item.status.color}}">{{item.status.msg}}</view>
                 <view class="item-card-name">{{item.title}}</view>

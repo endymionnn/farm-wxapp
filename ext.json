@@ -1,0 +1,12 @@
+{
+    "extEnable": true,
+    "extAppid": "wx8dbc3094eeabf8bd",
+    "directCommit": false,
+    "ext": {
+        "app_id": 1
+    },
+    "networkTimeout": {
+        "request": 10000,
+        "downloadFile": 10000
+    }
+}

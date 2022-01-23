@@ -6,6 +6,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+        load: 0,
         isAgree: false,
     },
 
@@ -19,16 +20,12 @@ Page({
             opentype: app.getOpentype(),
         });
 
-        if (!options.id || !options.farm_id) {
+        if (!options.id) {
             wx.navigateTo({
                 url: '/pages/index/index',
             });
             return false;
         }
-
-        that.setData({
-            farm_id: options.farm_id,
-        });
 
         wx.showLoading({
             title: '加载中...',
@@ -41,13 +38,19 @@ Page({
             data: {
                 app_id: app.globalData.app_id,
                 id: options.id,
-                farm_id: options.farm_id,
                 uid: wx.getStorageSync('userId'),
             },
             success: function(res) {
                 wx.hideLoading();
                 if (res.data.state) {
+                    if (res.data.data.order) {
+                        wx.navigateTo({
+                            url: '/pages/space/myshow?id='+ res.data.data.order,
+                        });
+                        return false;
+                    }
                     that.setData({
+                        load: 1,
                         title: res.data.data.title,
                         copyright: res.data.data.copyright,
                         data: res.data.data.data,
@@ -130,13 +133,12 @@ Page({
         }
 
         wx.request({
-            url: app.globalData.domain + '/card/buy.html',
+            url: app.globalData.domain + '/space/order.html',
             method: 'POST',
             data: {
                 app_id: app.globalData.app_id,
                 uid: wx.getStorageSync('userId'),
                 id: that.data.data.id,
-                farm_id: that.data.farm_id,
             },
             success: function(res) {
                 wx.hideLoading();
