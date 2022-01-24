@@ -103,7 +103,8 @@ Page({
                         title: res.data.data.title,
                         copyright: res.data.data.copyright,
                         farm: res.data.data.farm,
-                        space: res.data.data.space
+                        space: res.data.data.space,
+                        video: res.data.data.video,
                     });
                     wx.setStorageSync('FarmId', res.data.data.farm.id);
                 }

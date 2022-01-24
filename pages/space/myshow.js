@@ -46,6 +46,7 @@ Page({
                         data: res.data.data.data,
                         space: res.data.data.space,
                         farm: res.data.data.farm,
+                        video: res.data.data.video,
                     });
                 }
             },
