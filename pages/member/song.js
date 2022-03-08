@@ -10,7 +10,7 @@ Page({
      */
     data: {
         is_list: 1,
-        title: '我的运动记录',
+        title: '代配送记录',
     },
 
     /**
@@ -38,11 +38,12 @@ Page({
         });
 
         wx.request({
-            url: app.globalData.domain + '/member/gym.html',
+            url: app.globalData.domain + '/member/service.html',
             method: 'POST',
             data: {
                 app_id: app.globalData.app_id,
                 uid: wx.getStorageSync('userId'),
+                type: 3,
                 page: 1,
             },
             success: function (res) {
@@ -122,11 +123,12 @@ Page({
         });
 
         wx.request({
-            url: app.globalData.domain + '/member/gym.html',
+            url: app.globalData.domain + '/member/service.html',
             method: 'POST',
             data: {
                 app_id: app.globalData.app_id,
                 uid: wx.getStorageSync('userId'),
+                type: 3,
                 page: page,
             },
             success: function (res) {

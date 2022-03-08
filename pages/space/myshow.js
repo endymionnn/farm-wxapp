@@ -118,10 +118,22 @@ Page({
                         },
                         success: function (res) {
                             wx.hideLoading();
-                            if (res.data.state) {
-                                that.setData({
-                                    space: res.data.data.space,
+                            if (res.data.state == 100) {
+                                wx.navigateTo({
+                                    url: '/pages/user/mobile',
                                 });
+                                return false;
+                            }
+                            if (res.data.state == 1) {
+                                if (res.data.data.id) {
+                                    wx.navigateTo({
+                                        url: '/pages/pay/index?id=' + res.data.data.id,
+                                    });
+                                } else {
+                                    wx.navigateTo({
+                                        url: '/pages/member/index',
+                                    });
+                                }
                             } else {
                                 wx.showToast({
                                     title: res.data.msg,
